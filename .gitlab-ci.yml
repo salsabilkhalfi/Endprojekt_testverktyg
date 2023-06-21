@@ -1,8 +1,9 @@
 image: maven:3.9.2
 
 stages:
-  - "test"
-
+  - test
+  - build
+  
 unit_test:
     stage: "test"
     script:
