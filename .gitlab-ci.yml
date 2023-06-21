@@ -9,9 +9,10 @@ unit_test:
         - mvn test -Dtest=com.example.spring_thymeleaf.unit.**
     
 selenium_test:
+    image: markhobson/maven-chrome:latest
     stage: "test"
-    before_script:
-        - apt-get update -y && apt-get install libglib2.0-0 libnss3 libx11-6 -y
+#    before_script:
+#        - apt-get update -y && apt-get install libglib2.0-0 libnss3 libx11-6 -y
     script:
         - mvn test -Dtest=com.example.spring_thymeleaf.selenium.**
 
