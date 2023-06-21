@@ -5,6 +5,6 @@ RUN mvn package -DskipTests
 
 FROM amazoncorretto:20.0.1-alpine3.17
 RUN mkdir /app
-COPY --from=build target/Spring_Thymeleaf-0.0.1-SNAPSHOT.jar /app/java-application.jar
-WORKDIR /app
-CMD "java" "-jar" "java-application.jar"
+COPY --from=build target/Spring_Thymeleaf-0.0.1-SNAPSHOT.jar /opt/app/java-application.jar
+COPY --from=build target opt/app/
+CMD "java" "-jar" "/opt/app/java-application.jar"
