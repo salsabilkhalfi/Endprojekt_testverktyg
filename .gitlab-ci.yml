@@ -27,3 +27,17 @@ postman_api_test:
         - java -jar target/Spring_Thymeleaf-0.0.1-SNAPSHOT.jar &
         - wait-on http://localhost:8080/todo && newman run https://api.postman.com/collections/27340723-126c86b0-1669-4f7c-8ebe-23dd10cae000?access_key=$POSTMAN_KEY --env-var 'baseurl=http://localhost:8080'
         - npx kill-port 8080
+
+docker-build-and-push:
+  image: docker:latest
+  services:
+    - docker:dind
+  stage: build
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+  only:
+    - main
