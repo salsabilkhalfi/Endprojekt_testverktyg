@@ -16,9 +16,11 @@ selenium_test:
 postman_api_test:
     stage: "test"
     before_script:
-        - "apt-get update -y && apt-get install nodejs npm -y"
-        - "npm install -g newman"
-        - "npm install -g wait-on"
+        - apt-get update -y && apt-get install nodejs npm -y
+        - npm install -g newman
+        - npm install -g wait-on
     script:
-        - "mvn spring-boot:start"
-        - "wait-on http://localhost:8080/todo && newman run https://api.postman.com/collections/27340723-126c86b0-1669-4f7c-8ebe-23dd10cae000?access_key='$POSTMAN_KEY' --env-var 'baseurl=http://localhost:8080'"
+        - mvn package
+        - java -jar target/Spring_Thymeleaf-0.0.1-SNAPSHOT.jar &
+        - wait-on http://localhost:8080/todo && newman run https://api.postman.com/collections/27340723-126c86b0-1669-4f7c-8ebe-23dd10cae000?access_key='$POSTMAN_KEY' --env-var 'baseurl=http://localhost:8080'
+        - npx kill-port 8080
