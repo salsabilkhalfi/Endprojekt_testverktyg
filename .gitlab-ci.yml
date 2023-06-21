@@ -20,7 +20,7 @@ postman_api_test:
         - npm install -g newman
         - npm install -g wait-on
     script:
-        - mvn package
+        - mvn package -Dmaven.test.skip=true
         - java -jar target/Spring_Thymeleaf-0.0.1-SNAPSHOT.jar &
         - wait-on http://localhost:8080/todo && newman run https://api.postman.com/collections/27340723-126c86b0-1669-4f7c-8ebe-23dd10cae000?access_key='$POSTMAN_KEY' --env-var 'baseurl=http://localhost:8080'
         - npx kill-port 8080
