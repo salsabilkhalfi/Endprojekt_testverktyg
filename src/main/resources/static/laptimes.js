@@ -1,3 +1,3 @@
 const handleDelete = id =>
-    fetch('/todo/' + id, {method: 'DELETE'})
+    fetch('/laptimes/' + id, {method: 'DELETE'})
     .then(res => window.location.href = res.url)

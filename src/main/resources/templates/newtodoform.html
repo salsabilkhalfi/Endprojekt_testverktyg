@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Todo Form</title>
-    <link th:rel="stylesheet" th:href="@{/todo.css}">
+    <link th:rel="stylesheet" th:href="@{/laptimes.css}">
 </head>
 <body>
   <div th:class="container">
-    <h1>Add new Todo!</h1>
-      <form th:method="post" th:action="@{/todo}">
-          <input th:id="input-title" th:name="title" th:type="text" th:placeholder="Title...">
-          <br><br>
-          <textarea th:id="input-description" th:name="description" th:placeholder="Description..."></textarea>
+    <h1>Lägg till ny varvtid!</h1>
+      <form th:method="post" th:action="@{/laptimes}">
+          <input th:id="input-laptime" th:name="lapTime" th:type="text" th:placeholder="Varvtid...">
           <br><br>
           <input th:id="save-button" th:type="submit" th:value="Save">
       </form>
