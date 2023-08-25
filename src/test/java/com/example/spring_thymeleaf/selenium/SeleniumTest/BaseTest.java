@@ -15,7 +15,6 @@ public class BaseTest {
 
     @BeforeAll
     public static void init(){
-        // Any setup needed before all test methods run
     }
 
     @BeforeEach
